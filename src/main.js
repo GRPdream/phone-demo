@@ -14,6 +14,7 @@ import moment from 'moment' //导入时间处理模块
 import "../node_modules/mint-ui/lib/header/style.css"
 import "../node_modules/mint-ui/lib/swipe/style.css"
 import "../node_modules/mint-ui/lib/button/style.css"
+import "../node_modules/mint-ui/lib/Toast/style.css"
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)

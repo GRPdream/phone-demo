@@ -34,13 +34,22 @@
         </div>
       </div>
     </div>
-    <mt-button type="danger" size="large" plain>发表评论</mt-button>
+    <mt-button type="danger" size="large" plain @click="loadmore">加载更多</mt-button>
   </div>
 </template>
 
 <script>
-export default {
+import { Toast } from 'mint-ui' //这并不是一个全局的变量
 
+export default {
+  data() {
+    return {}
+  },
+  methods: {
+    loadmore() {
+      Toast("即便你点了，我也没有东西加载啊ORZ")
+    }
+  },
 }
 </script>
 
