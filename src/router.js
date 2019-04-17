@@ -3,8 +3,11 @@ import home from "./components/subcom/home.vue"
 import member from "./components/subcom/member.vue"
 import shopcar from "./components/subcom/shopcar.vue"
 import search from "./components/subcom/search.vue"
-import news from "./components/homecom/news.vue"
-import newsinfo from "./components/homecom/newsinfo.vue"
+import news from "./components/homecom/newscom/news.vue"
+import newsinfo from "./components/homecom/newscom/newsinfo.vue"
+import photo from "./components/homecom/photocom/photo.vue"
+import photoinfo from "./components/homecom/photocom/photoinfo.vue"
+import goodslist from "./components/homecom/goodslist/goodslist.vue"
 
 var router = new VueRouter({
   routes: [
@@ -14,7 +17,10 @@ var router = new VueRouter({
     { path: '/shopcar', component: shopcar },
     { path: '/search', component: search },
     { path: '/home/news', component: news},
-    { path: '/home/newsinfo', component: newsinfo}
+    { path: '/home/newsinfo', component: newsinfo},
+    { path: '/home/photo', component: photo},
+    { path: '/home/photoinfo', component: photoinfo},
+    { path: '/home/goodslist', component: goodslist},
   ],
   linkActiveClass: 'mui-active'
 })

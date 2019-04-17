@@ -12,12 +12,12 @@
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/news">
         <span class="mui-icon mui-icon-chatboxes"></span>
         <div class="mui-media-body">新闻资讯</div></router-link></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photo">
         <span class="mui-icon mui-icon-email"></span>
-        <div class="mui-media-body">Email</div></a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+        <div class="mui-media-body">图片分享</div></router-link></li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/goodslist">
         <span class="mui-icon mui-icon-chatbubble"></span>
-        <div class="mui-media-body">Chat</div></a></li>
+        <div class="mui-media-body">商品列表</div></router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
         <span class="mui-icon mui-icon-location"></span>
         <div class="mui-media-body">location</div></a></li>

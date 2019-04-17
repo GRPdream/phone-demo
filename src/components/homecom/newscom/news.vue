@@ -34,7 +34,6 @@ export default {
           jsonpCallback:"show",
           }).then(response => {
           this.list = response.body
-          console.log("请求成功");
         },response => {
           console.log("请求失败"+response.status);
         })

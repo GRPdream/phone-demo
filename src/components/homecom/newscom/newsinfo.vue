@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import conment from '../supcom/conment-box.vue'
+import conment from '../../supcom/conment-box.vue'
 
 export default {
   data() {
