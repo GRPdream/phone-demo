@@ -10,7 +10,6 @@ import photoinfo from "./components/homecom/photocom/photoinfo.vue"
 import goodslist from "./components/homecom/goodslist/goodslist.vue"
 import goodsinfo from "./components/homecom/goodslist/goodsinfo.vue"
 
-
 var router = new VueRouter({
   routes: [
     { path: '/', redirect: '/home' },
@@ -23,7 +22,7 @@ var router = new VueRouter({
     { path: '/home/photo', component: photo},
     { path: '/home/photoinfo', component: photoinfo},
     { path: '/home/goodslist', component: goodslist},
-    { path: '/home/goodsinfo', component: goodsinfo, name: "goodsinfo"}
+    { path: '/home/goodsinfo', component: goodsinfo, name: "goodsinfo"},
   ],
   linkActiveClass: 'mui-active'
 })

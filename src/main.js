@@ -10,6 +10,8 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true  //设置 post 时的表格组织形式
 import moment from 'moment' //导入时间处理模块
+import vuex from 'vuex'
+Vue.use(vuex)
 
 import MintUI from 'mint-ui'
 Vue.use(MintUI)
@@ -20,8 +22,48 @@ Vue.filter('dataFormat', function(dataStr, pattern="YYYY-MM-DD HH:mm:ss") {  // 
   return moment(dataStr).format(pattern)
 })
 
+var cart = JSON.parse(localStorage.getItem('car') || '[]')
+//定义 vuex 的实例
+const store = new vuex.Store({
+  state: {  // 通过 this.$store.state.*** 调用
+    car: cart,
+  },
+  mutations: {  // 通过 this.$store.commit('***') 调用
+    addCar(state, goodsinfo) {
+      //let flag = false
+      let flag = state.car.some( item => {
+      if(item.id == goodsinfo.id) {
+        item.count += parseInt(goodsinfo.count)
+        return true
+       }
+      })
+      if(!flag) {
+        state.car.push(goodsinfo)
+      }
+      this.commit('dataToLocal', state.car)
+    },
+    dataToLocal(state, data) {
+      localStorage.setItem('car', JSON.stringify(data))
+    },
+  },
+  getters: {  // 通过 this.$store.getters.*** 调用
+    getAllCount(state) {
+      var allCount = 0
+      state.car.forEach( item => {
+        allCount += item.count
+      })
+      return allCount
+    },
+    getPrice(state, getters) {
+      var price = getters.getAllCount*599
+      return price
+    }
+  },
+})
+
 var vm = new Vue({
   el: '#app',
   render: h => h(App),
-  router
+  router,
+  store,
 })

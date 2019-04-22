@@ -5,9 +5,9 @@
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter"
-      @enter-cancelled="enterCancelled"
+      @after-leave="afterLeave"
     >
-      <div class="ball" v-show="ballFlag"></div>
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
     <div class="mui-card">
       <div class="mui-card-content">
@@ -29,11 +29,11 @@
             <p class="price">
               市场价：<del>￥999</del>&nbsp;&nbsp;&nbsp;销售价： <span class="old">￥899</span>
             </p>
-            <p>购买数量：<numbox></numbox></p>
+            <p>购买数量：<numbox @func="getCount"></numbox></p>
             <div class="num"></div>
             <div class="buy">
-              <mt-button type="primary" size="middle">立刻购买</mt-button>
-              <mt-button type="danger" size="middle" @click="toShopCar">加入购物车</mt-button>
+              <mt-button type="primary" size="normal">立刻购买</mt-button>
+              <mt-button type="danger" size="normal" @click="clickFlag && toShopCar()">加入购物车</mt-button>
             </div>
           </div>
         </div>
@@ -67,24 +67,49 @@ export default {
   data() {
     return {
       ballFlag: false,
+      clickFlag: true,
+      count: 1
     }
   },
   methods: {
-    toShopCar(){
-      this.ballFlag = !this.ballFlag
+    toShopCar(){ 
+      this.clickFlag = !this.clickFlag
+      this.ballFlag = !this.ballFlag 
+
+      var goodsinfo = {
+        id: 1,
+        count: this.count,
+        selected: true
+      }
+
+      this.$store.commit('addCar', goodsinfo)
     },
     beforeEnter(el) {
       el.style.transform="translate(0, 0)"
     },
     enter(el,done) {
       el.offsetWidth;
-      el.style.transform="translate(93px, 230px)"
+
+      const ballPosition = this.$refs.ball.getBoundingClientRect()
+      const badgePosition = document.getElementById('badge').getBoundingClientRect()
+
+      const xDist = badgePosition.left - ballPosition.left
+      const yDist = badgePosition.top - ballPosition.top
+
+      el.style.transform=`translate(${xDist}px, ${yDist}px)`
       el.style.transition="all 1s cubic-bezier(.25,-0.84,.83,.67)"
       done()
     },
     afterEnter(el) {
       this.ballFlag = !this.ballFlag
     },
+    afterLeave(el) {
+      this.clickFlag = !this.clickFlag
+    },
+    getCount(Count){
+      this.count = Count
+      console.log(Count);
+    }
   },
   components: {
     numbox
