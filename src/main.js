@@ -17,6 +17,7 @@ import MintUI from 'mint-ui'
 Vue.use(MintUI)
 import "mint-ui/lib/style.css"
 
+
 //定义一个全局的时间过滤器
 Vue.filter('dataFormat', function(dataStr, pattern="YYYY-MM-DD HH:mm:ss") {  // pattern 是设置默认值
   return moment(dataStr).format(pattern)
@@ -45,12 +46,17 @@ const store = new vuex.Store({
     dataToLocal(state, data) {
       localStorage.setItem('car', JSON.stringify(data))
     },
+    changeSelected(state) {
+      state.car[0].selected = !state.car[0].selected
+    }
   },
   getters: {  // 通过 this.$store.getters.*** 调用
     getAllCount(state) {
       var allCount = 0
       state.car.forEach( item => {
-        allCount += item.count
+        if(item.selected == true) {
+          allCount += item.count
+        }
       })
       return allCount
     },
@@ -67,3 +73,5 @@ var vm = new Vue({
   router,
   store,
 })
+
+export {vm}

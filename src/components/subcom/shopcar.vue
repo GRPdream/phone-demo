@@ -39,27 +39,25 @@
 <script>
 import numbox from "../supcom/num-box.vue"
 import mui from "../../lib/mui/js/mui.min.js"
+import {vm} from "../../main.js"
+
+window.onload = function() {
+  document.getElementById("mySwitch").addEventListener("toggle",function(event){
+  if(event.detail.isActive){
+    vm.$store.commit('changeSelected') //打开开关
+  }else{
+    vm.$store.commit('changeSelected') //关闭开关
+  }
+})
+}
 
 export default {
   data() {
     return {
-      isActive: {},
     }
   },
   mounted() {
     mui('.mui-switch')['switch']()
-    this.isActive = this.$refs.mySwitchs.classList
-    //console.log(this.isActive);
-    //.classList.contains("mui-active")
-  },
-  watch: {
-    // activeLength: {
-    //   function (newVal, oldVal){
-    //     console.log(newVal);
-    //   }
-    // }
-  },
-  computed:{
   },
   components: {
     numbox
@@ -70,10 +68,10 @@ export default {
     },
     myclick() {
       //var isActive = document.getElementById("mySwitch").classList.contains("mui-active");
-      console.log(this.isActive.length);
-      //console.log(typeof(this.isActive[3]));
       console.log(this.isActive);
-      console.log(activeLength);
+      //console.log(typeof(this.isActive[3]));
+      //console.log(this.isActive);
+      console.log(this.activeFlag.length);
       //console.log(this.$refs.mySwitchs.classList.contains("mui-active"));
       //mui("#mySwitch").switch().toggle();
     },
